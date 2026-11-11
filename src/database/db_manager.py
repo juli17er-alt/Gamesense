@@ -9,7 +9,10 @@ import os
 from pathlib import Path
 from typing import List, Dict, Any, Optional, Tuple
 
-from src.database.sample_data import GENRES, PLATFORMS, INITIAL_GAMES, SAMPLE_PLAYERS_INTERACTIONS
+try:
+    from .sample_data import GENRES, PLATFORMS, INITIAL_GAMES, SAMPLE_PLAYERS_INTERACTIONS
+except ImportError:
+    from src.database.sample_data import GENRES, PLATFORMS, INITIAL_GAMES, SAMPLE_PLAYERS_INTERACTIONS
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DEFAULT_DB_PATH = BASE_DIR / "data" / "gamesense.db"

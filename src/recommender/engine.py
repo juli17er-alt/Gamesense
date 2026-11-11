@@ -13,9 +13,14 @@ from typing import Dict, Any, List, Optional
 import pandas as pd
 import numpy as np
 
-from src.database.db_manager import DatabaseManager
-from src.analysis.player_eda import PlayerBehaviorEDA
-from src.recommender.explainer import RecommendationExplainer
+try:
+    from src.database.db_manager import DatabaseManager
+    from src.analysis.player_eda import PlayerBehaviorEDA
+    from src.recommender.explainer import RecommendationExplainer
+except ImportError:
+    from ..database.db_manager import DatabaseManager
+    from ..analysis.player_eda import PlayerBehaviorEDA
+    from .explainer import RecommendationExplainer
 
 
 class ContentBasedRecommender:

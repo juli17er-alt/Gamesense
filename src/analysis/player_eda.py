@@ -10,7 +10,10 @@ relacionados con los hábitos de juego, preferencias y comportamiento del jugado
 import math
 from typing import Dict, Any, List, Optional
 import pandas as pd
-from src.database.db_manager import DatabaseManager
+try:
+    from src.database.db_manager import DatabaseManager
+except ImportError:
+    from ..database.db_manager import DatabaseManager
 
 
 class PlayerBehaviorEDA:

@@ -14,15 +14,23 @@ from pathlib import Path
 import streamlit as st
 import pandas as pd
 
-# Asegurar que el directorio raíz esté en sys.path
+# Asegurar que el directorio raíz y src estén en sys.path
 ROOT_DIR = Path(__file__).resolve().parent.parent.parent
-if str(ROOT_DIR) not in sys.path:
-    sys.path.insert(0, str(ROOT_DIR))
+SRC_DIR = ROOT_DIR / "src"
+for p in (ROOT_DIR, SRC_DIR):
+    if str(p) not in sys.path:
+        sys.path.insert(0, str(p))
 
-from src.database.db_manager import DatabaseManager
-from src.database.data_importer import SurveyDataImporter
-from src.analysis.player_eda import PlayerBehaviorEDA
-from src.recommender.engine import ContentBasedRecommender, CollaborativeFilteringRecommender
+try:
+    from src.database.db_manager import DatabaseManager
+    from src.database.data_importer import SurveyDataImporter
+    from src.analysis.player_eda import PlayerBehaviorEDA
+    from src.recommender.engine import ContentBasedRecommender, CollaborativeFilteringRecommender
+except ImportError:
+    from ..database.db_manager import DatabaseManager
+    from ..database.data_importer import SurveyDataImporter
+    from ..analysis.player_eda import PlayerBehaviorEDA
+    from ..recommender.engine import ContentBasedRecommender, CollaborativeFilteringRecommender
 
 # Configuración de página
 st.set_page_config(

@@ -9,7 +9,10 @@ import io
 from pathlib import Path
 from typing import Dict, Any, List, Union
 
-from src.database.db_manager import DatabaseManager
+try:
+    from .db_manager import DatabaseManager
+except ImportError:
+    from src.database.db_manager import DatabaseManager
 
 
 class SurveyDataImporter:
